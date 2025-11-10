@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+      /* Cores customizadas */
+      --color-primary: #FFFFFF;
+      --color-secondary: #FAFAFA;
+      --color-border-primary: #EFF0F2;
+      --color-text-primary: #262626;
+      --color-text-secondary: #4D4D4D;
+      --color-blue-primary: #3B6BE8;
+      --color-blue-border: #3B6BE8;
+      --color-blue-primary-5: rgba(59, 107, 232, 0.05);
+    }
+
+    body {
+      font-family: 'InterDisplay', sans-serif;
+      font-weight: 400;
+      font-style: normal;
+      font-optical-sizing: auto;
+      font-variation-settings: "opsz" 16;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-text-size-adjust: 100%;
+    }
+}
+
+@layer utilities {
+    /* Animações */
+    .animate-spin-slow {
+      animation: spin 6s linear infinite;
+    }
+
+    .animate-spin-slow-reverse {
+      animation: spin 6s linear infinite reverse;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Animação de scroll infinito para carrossel vertical */
+    .animate-scroll-infinite {
+      animation: scrollInfinite 20s linear infinite;
+    }
+
+    .animate-scroll-infinite:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes scrollInfinite {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-50%);
+      }
+    }
+
+    /* Backgrounds */
+    .bg-primary {
+      background-color: var(--color-primary);
+    }
+    .bg-secondary {
+      background-color: var(--color-secondary);
+    }
+    .bg-border-primary {
+      background-color: var(--color-border-primary);
+    }
+    
+    /* Borders */
+    .border-primary {
+      border-color: var(--color-border-primary);
+    }
+    
+    /* Text Colors */
+    .text-primary {
+      color: var(--color-text-primary);
+    }
+    .text-secondary {
+      color: var(--color-text-secondary);
+    }
+    
+    /* Blue Colors */
+    .bg-blue-primary {
+      background-color: var(--color-blue-primary);
+    }
+    .border-blue-border {
+      border-color: var(--color-blue-border);
+    }
+    .bg-blue-primary-5 {
+      background-color: var(--color-blue-primary-5);
+    }
+    .text-blue-primary {
+      color: var(--color-blue-primary);
+    }
+}
