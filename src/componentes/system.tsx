@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Animacao from './animacao';
 
 type Tab = 'pipeline' | 'dashboard' | 'workflows';
 
@@ -55,10 +56,12 @@ const System = () => {
       </div>
 
       {/* Tab Content */}
-      <div className='w-full'>
+      <div className='w-full relative'>
         {activeTab === 'pipeline' && (
-          <div className='h-[200px] w-[400px] bg-red-500 mx-auto'>
-            {/* Conteúdo Pipeline */}
+          <div className='w-full flex justify-center py-8 relative'>
+            <Animacao />
+            {/* Degradê branco na parte inferior */}
+            <div className='absolute bottom-0 left-0 right-0 h-[250px] bg-gradient-to-t from-white to-transparent pointer-events-none z-20' />
           </div>
         )}
         {activeTab === 'dashboard' && (

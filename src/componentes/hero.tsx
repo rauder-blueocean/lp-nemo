@@ -55,7 +55,7 @@ const Hero = () => {
   };
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white pt-24 pb-8 px-8 flex flex-col items-center'>
+    <div className='relative h-fit w-screen overflow-x-hidden bg-white pt-24 pb-8 px-8 flex flex-col items-center lg:h-[470px] lg:justify-center'>
       <div className='flex flex-col items-center justify-center gap-2'>
       <div className="p-[1px] flex w-fit h-fit rounded-full overflow-hidden relative">
         <div className="h-[400px] w-[400px] absolute top-[-180px] left-[-100px] animate-spin-slow-reverse" style={{background: 'conic-gradient(from 0deg, #3B6BE8, rgba(59, 108, 232, 0))'}}></div>
@@ -64,8 +64,8 @@ const Hero = () => {
       </div>
       </div>
       <div className='flex flex-col items-center justify-center gap-2'>
-        <h1 className='text-5xl font-bold text-center'>O seu último <br /> e melhor CRM</h1>
-        <p className='text-sm text-center leading-tight'>Um CRM completo, desenvolvido para softwares, que centraliza comunicação, vendas, faturamento, dados e automação em um único sistema.</p>
+        <h1 className='text-5xl font-bold text-center lg:text-7xl'>O seu último <br /> e melhor CRM</h1>
+        <p className='text-sm text-center leading-tight lg:text-lg'>Um CRM completo, desenvolvido para softwares, que <br /> centraliza comunicação, vendas, faturamento, dados <br /> e automação em um único sistema.</p>
       </div>
       </div>
       

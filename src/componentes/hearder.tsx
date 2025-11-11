@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className='fixed top-0 left-0 right-0 w-full bg-white border-b border-border-primary z-50'>
       <div className='flex flex-row justify-between items-center p-4 px-6'>
-        <img src="/nemo-logo.svg" alt="logo" className='h-5' />
+        <img src="/nemo-logo.svg" alt="logo" className='h-5 w-[180px]' />
         
         {/* Menu de navegação desktop */}
         <nav className='hidden md:flex items-center gap-8 font-semibold'>

@@ -15,7 +15,7 @@ const Footer = () => {
             </a>
             </div>
         </div>
-        <div className="h-[1px] w-full bg-border-primary"></div>
+        <div className="h-[1px] w-full bg-[#484848] "></div>
         <p className='text-sm leading-tight text-white'>
           Ao continuar, você concorda com nossos{' '}
           <a href="/termos" className='underline hover:opacity-80 transition-opacity'>Termos e Condições</a>.{' '}
