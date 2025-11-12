@@ -1,28 +1,33 @@
 import { useRive, Layout, Fit, Alignment } from '@rive-app/react-canvas';
 import { useInView } from '../hooks/useInView';
+import { useEffect } from 'react';
 
 const Servicos = () => {
-  const { RiveComponent: RiveComponent1 } = useRive({
+  const card1Ref = useInView({ threshold: 0.2 });
+  const card2Ref = useInView({ threshold: 0.2 });
+  const card3Ref = useInView({ threshold: 0.2 });
+
+  const { rive: rive1, RiveComponent: RiveComponent1 } = useRive({
     src: '/criacao_de_lead_final.riv',
-    autoplay: true,
+    autoplay: false,
     layout: new Layout({
       fit: Fit.Contain,
       alignment: Alignment.Center,
     }),
   });
 
-  const { RiveComponent: RiveComponent2 } = useRive({
+  const { rive: rive2, RiveComponent: RiveComponent2 } = useRive({
     src: '/edicao_da_pipelinefinal.riv',
-    autoplay: true,
+    autoplay: false,
     layout: new Layout({
       fit: Fit.Contain,
       alignment: Alignment.Center,
     }),
   });
 
-  const { RiveComponent: RiveComponent3 } = useRive({
+  const { rive: rive3, RiveComponent: RiveComponent3 } = useRive({
     src: '/graficos.riv',
-    autoplay: true,
+    autoplay: false,
     layout: new Layout({
       fit: Fit.Contain,
       alignment: Alignment.Center,
@@ -31,9 +36,27 @@ const Servicos = () => {
 
   const titleRef = useInView({ threshold: 0.2 });
   const descRef = useInView({ threshold: 0.2 });
-  const card1Ref = useInView({ threshold: 0.2 });
-  const card2Ref = useInView({ threshold: 0.2 });
-  const card3Ref = useInView({ threshold: 0.2 });
+
+  // Controla a animação Rive 1 quando entra na viewport
+  useEffect(() => {
+    if (card1Ref.isInView && rive1) {
+      rive1.play();
+    }
+  }, [card1Ref.isInView, rive1]);
+
+  // Controla a animação Rive 2 quando entra na viewport
+  useEffect(() => {
+    if (card2Ref.isInView && rive2) {
+      rive2.play();
+    }
+  }, [card2Ref.isInView, rive2]);
+
+  // Controla a animação Rive 3 quando entra na viewport
+  useEffect(() => {
+    if (card3Ref.isInView && rive3) {
+      rive3.play();
+    }
+  }, [card3Ref.isInView, rive3]);
 
   return (
     <div className='relative h-fit w-screen overflow-x-hidden bg-white px-6 py-8 flex flex-col items-center'>
@@ -48,17 +71,17 @@ const Servicos = () => {
         </p>
       </div>
       <div className='flex flex-col gap-4 w-full md:w-fit md:flex-row mt-8'>
-        <div ref={card1Ref.ref} className={`shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden transition-all duration-800 ${card1Ref.isInView ? 'animate-fade-in-up animate-delay-300' : 'opacity-0 translate-y-8'}`} style={{ aspectRatio: '327 / 251' }}>
+        <div ref={card1Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
           <RiveComponent1 
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
           />
         </div>
-        <div ref={card2Ref.ref} className={`shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden transition-all duration-800 ${card2Ref.isInView ? 'animate-fade-in-up animate-delay-400' : 'opacity-0 translate-y-8'}`} style={{ aspectRatio: '327 / 251' }}>
+        <div ref={card2Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
           <RiveComponent2 
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
           />
         </div>
-        <div ref={card3Ref.ref} className={`shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden transition-all duration-800 ${card3Ref.isInView ? 'animate-fade-in-up animate-delay-500' : 'opacity-0 translate-y-8'}`} style={{ aspectRatio: '327 / 251' }}>
+        <div ref={card3Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
           <RiveComponent3 
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
           />
