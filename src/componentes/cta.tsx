@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Button from './button';
+import { useInView } from '../hooks/useInView';
 
 interface FormData {
   nome: string;
@@ -16,6 +17,9 @@ const CTA = () => {
     telefone: '',
     nomeEmpresa: ''
   });
+
+  const titleRef = useInView({ threshold: 0.2 });
+  const descRef = useInView({ threshold: 0.2 });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,14 +59,25 @@ const CTA = () => {
   };
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-8  py-8 flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-8'>
+    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-8  py-24 flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-8'>
       <div className='flex flex-col gap-2  lg:w-[500px]'>
-        <h1 className='text-3xl font-bold text-center lg:text-left lg:text-4xl'>Transforme dados em crescimento previsível.</h1>
-        <p className='text-sm text-center text-center lg:text-left leading-tight text-text-secondary lg:text-lg'>A Nemo conecta pessoas, processos e receita para que sua operação cresça de forma inteligente e sustentável.</p>
+        <div ref={titleRef.ref}>
+          <h1 className={`text-3xl font-bold text-center lg:text-left lg:text-4xl transition-all duration-800 ${titleRef.isInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+            Transforme dados em crescimento previsível.
+          </h1>
+        </div>
+        <div ref={descRef.ref}>
+          <p className={`text-sm text-center text-center lg:text-left leading-tight text-text-secondary lg:text-lg transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-200' : 'opacity-0'}`}>
+            A Nemo conecta pessoas, processos e receita para que sua operação cresça de forma inteligente e sustentável.
+          </p>
+        </div>
       </div>
+      <button className='bg-blue-primary mt-4 text-white h-[45px] px-8 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed block lg:hidden'>
+        Agendar demonstração grátis
+      </button>
         
         {/* Formulário de Contato */}
-        <form onSubmit={handleSubmit} className='flex flex-col gap-2 w-full max-w-md mt-8'>
+        <form onSubmit={handleSubmit} className='flex flex-col gap-2 w-full max-w-md mt-8 hidden lg:flex lg:overflow-visible'>
           <input 
             type='text'
             name='nome'

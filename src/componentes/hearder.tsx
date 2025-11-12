@@ -12,10 +12,10 @@ const Header = () => {
   return (
     <header className='fixed top-0 left-0 right-0 w-full bg-white border-b border-border-primary z-50'>
       <div className='flex flex-row justify-between items-center p-4 px-6'>
-        <img src="/nemo-logo.svg" alt="logo" className='h-5 w-[180px]' />
+        <img src="/nemo-logo.svg" alt="logo" className='h-5 w-[180px] animate-fade-in' />
         
         {/* Menu de navegação desktop */}
-        <nav className='hidden md:flex items-center gap-8 font-semibold'>
+        <nav className='hidden md:flex items-center gap-8 font-semibold animate-fade-in animate-delay-100'>
           <a href="#home" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Home
           </a>
@@ -29,7 +29,7 @@ const Header = () => {
             FAQ
           </a>
         </nav>
-          <Button className='hidden md:block px-6 py-2'>
+          <Button className='hidden md:block px-6 py-2 animate-fade-in animate-delay-200'>
             Entre em Contato
           </Button>
 

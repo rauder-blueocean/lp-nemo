@@ -1,4 +1,9 @@
+import { useInView } from '../hooks/useInView';
+
 const Testimonials = () => {
+  const titleRef = useInView({ threshold: 0.2 });
+  const descRef = useInView({ threshold: 0.2 });
+
   // Imagens do time - você precisará adicionar as imagens reais na pasta public
   const teamPhotos = [
     '/team/person1.jpg',
@@ -35,12 +40,16 @@ const Testimonials = () => {
         <div className='flex flex-col gap-7 justify-center'>
         {/* Título e Descrição */}
         <div className='flex flex-col gap-2 text-center lg:text-left'>
-          <h2 className='text-[24px] lg:w-[532px] font-bold text-text-primary leading-tight lg:text-3xl lg:leading-tight'>
-            Crescimento previsível <br className='hidden lg:block' /> começa <br className='block lg:hidden' /> com tecnologia sólida <br className='hidden lg:block' /> e suporte <br className='block lg:hidden' /> que entende SaaS.
-          </h2>
-          <p className='text-[14px] lg:w-[600px] lg:text-xl font-medium text-text-secondary'>
-            Na Nemo, você não recebe apenas um CRM. Você recebe um time que acompanha sua operação, apoia sua implementação e garante que cada métrica avance.
-          </p>
+          <div ref={titleRef.ref}>
+            <h2 className={`text-[24px] lg:w-[532px] font-bold text-text-primary leading-tight lg:text-3xl lg:leading-tight transition-all duration-800 ${titleRef.isInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>
+              Crescimento previsível <br className='hidden lg:block' /> começa <br className='block lg:hidden' /> com tecnologia sólida <br className='hidden lg:block' /> e suporte <br className='block lg:hidden' /> que entende SaaS.
+            </h2>
+          </div>
+          <div ref={descRef.ref}>
+            <p className={`text-[14px] lg:w-[600px] lg:text-xl font-medium text-text-secondary transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-200' : 'opacity-0'}`}>
+              Na Nemo, você não recebe apenas um CRM. Você recebe um time que acompanha sua operação, apoia sua implementação e garante que cada métrica avance.
+            </p>
+          </div>
         </div>
 
         {/* Grid de Fotos do Time - Mobile/Tablet */}

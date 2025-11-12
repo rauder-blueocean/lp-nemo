@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Button from './button';
+import { useInView } from '../hooks/useInView';
 
 interface FormData {
   nome: string;
@@ -16,6 +17,10 @@ const Hero = () => {
     telefone: '',
     nomeEmpresa: ''
   });
+
+  const badgeRef = useInView({ threshold: 0.1 });
+  const titleRef = useInView({ threshold: 0.1 });
+  const descRef = useInView({ threshold: 0.1 });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -57,15 +62,23 @@ const Hero = () => {
   return (
     <div className='relative h-fit w-screen overflow-x-hidden bg-white pt-24 pb-8 px-8 flex flex-col items-center lg:h-[470px] lg:justify-center'>
       <div className='flex flex-col items-center justify-center gap-2'>
-      <div className="p-[1px] flex w-fit h-fit rounded-full overflow-hidden relative">
+      <div ref={badgeRef.ref} className={`p-[1px] flex w-fit h-fit rounded-full overflow-hidden relative transition-all duration-1000 ${badgeRef.isInView ? 'animate-fade-in' : 'opacity-0'}`}>
         <div className="h-[400px] w-[400px] absolute top-[-180px] left-[-100px] animate-spin-slow-reverse" style={{background: 'conic-gradient(from 0deg, #3B6BE8, rgba(59, 108, 232, 0))'}}></div>
       <div className='flex flex-row items-center justify-between py-1 px-8 rounded-full w-fit bg-white z-10'>
         <div className='text-blue-primary text-sm font-semibold'>Para Donos de SaaS</div>  
       </div>
       </div>
       <div className='flex flex-col items-center justify-center gap-2'>
-        <h1 className='text-5xl font-bold text-center lg:text-7xl'>O seu último <br /> e melhor CRM</h1>
-        <p className='text-sm text-center leading-tight lg:text-lg'>Um CRM completo, desenvolvido para softwares, que <br /> centraliza comunicação, vendas, faturamento, dados <br /> e automação em um único sistema.</p>
+        <div ref={titleRef.ref}>
+          <h1 className={`text-5xl font-bold text-center lg:text-7xl transition-all duration-800 ${titleRef.isInView ? 'animate-fade-in-up animate-delay-200' : 'opacity-0 translate-y-8'}`}>
+            O seu último <br /> e melhor CRM
+          </h1>
+        </div>
+        <div ref={descRef.ref}>
+          <p className={`text-sm text-center leading-tight lg:text-lg transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-400' : 'opacity-0'}`}>
+            Um CRM completo, desenvolvido para softwares, que <br /> centraliza comunicação, vendas, faturamento, dados <br /> e automação em um único sistema.
+          </p>
+        </div>
       </div>
       </div>
       

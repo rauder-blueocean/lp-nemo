@@ -13,7 +13,7 @@ const System = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-2 w-full">
       {/* Tab Bar */}
-      <div className='flex flex-row items-center justify-center h-[51px] border-border-primary border-b w-full relative'>
+      <div className='flex flex-row items-center justify-center h-[51px] border-border-primary border-b w-full relative animate-fade-in'>
         <button 
           onClick={() => handleTabClick('pipeline')}
           className={`text-sm font-semibold flex-1 h-full transition-all relative ${
