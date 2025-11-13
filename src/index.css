@@ -26,10 +26,19 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       -webkit-text-size-adjust: 100%;
+      /* Bloqueia o overscroll (bounce effect) no mobile */
+      overscroll-behavior-y: none;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    html {
+      /* Bloqueia o overscroll no elemento raiz */
+      overscroll-behavior-y: none;
     }
 }
 
 @layer utilities {
+
     /* Animações */
     .animate-spin-slow {
       animation: spin 6s linear infinite;

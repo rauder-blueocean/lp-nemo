@@ -7,6 +7,7 @@ import CTA from './componentes/cta';
 import Footer from './componentes/foorter';
 import Servicos from './componentes/servicos';
 import Animacao from './componentes/animacao';
+import FAQ from './componentes/faq';
 
 // Página inicial
 function HomePage() {
@@ -17,7 +18,21 @@ function HomePage() {
       <System />
       <Servicos />
       <Testimonials />
+      <FAQ />
       <CTA />
+      <Footer />
+    </main>
+  );
+}
+
+// Página FAQ
+function FAQPage() {
+  return (
+    <main className='relative min-h-screen w-screen overflow-x-hidden'>
+      <Header />
+      <div className='pt-20'>
+        <FAQ />
+      </div>
       <Footer />
     </main>
   );
@@ -28,6 +43,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/animação" element={<Animacao />} />
+      <Route path="/faq" element={<FAQPage />} />
     </Routes>
   );
 }

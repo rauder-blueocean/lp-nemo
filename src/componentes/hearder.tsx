@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import Button from './button';
 
 const Header = () => {
@@ -16,18 +17,18 @@ const Header = () => {
         
         {/* Menu de navegação desktop */}
         <nav className='hidden md:flex items-center gap-8 font-semibold animate-fade-in animate-delay-100'>
-          <a href="#home" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
+          <Link to="/" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Home
-          </a>
+          </Link>
           <a href="#servicos" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Serviços
           </a>
           <a href="#suporte" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Suporte
           </a>
-          <a href="#faq" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
+          <Link to="/faq" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             FAQ
-          </a>
+          </Link>
         </nav>
           <Button className='hidden md:block px-6 py-2 animate-fade-in animate-delay-200'>
             Entre em Contato
@@ -50,13 +51,13 @@ const Header = () => {
         }`}
       >
         <nav className='flex flex-col p-6 gap-4 border-t border-border-primary'>
-          <a 
-            href="#home" 
+          <Link 
+            to="/" 
             onClick={toggleMenu}
             className='text-text-primary hover:text-blue-primary transition-colors py-2 font-semibold'
           >
             Home
-          </a>
+          </Link>
           <a 
             href="#servicos" 
             onClick={toggleMenu}
@@ -71,14 +72,14 @@ const Header = () => {
           >
             Suporte
           </a>
-          <a 
-            href="#faq" 
+          <Link 
+            to="/faq" 
             onClick={toggleMenu}
             className='text-text-primary hover:text-blue-primary transition-colors py-2 font-semibold'
           >
             FAQ
-          </a>
-          <Button className='hiddenpx-6 py-2'>
+          </Link>
+          <Button className='px-6 py-2'>
             Entre em Contato
           </Button>
         </nav>
