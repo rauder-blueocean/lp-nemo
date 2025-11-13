@@ -7,22 +7,70 @@ type Tab = 'pipeline' | 'dashboard' | 'workflows';
 const System = () => {
   const [activeTab, setActiveTab] = useState<Tab>('pipeline');
   const pipelineRef = useInView({ threshold: 0.1 });
+  const dashboardRef = useInView({ threshold: 0.1 });
+  const workflowsRef = useInView({ threshold: 0.1 });
 
-  const { rive, RiveComponent } = useRive({
+  const { rive: rivePipeline, RiveComponent: RiveComponentPipeline } = useRive({
     src: '/pipeline.riv',
-    autoplay: false,
+    autoplay: true,
     layout: new Layout({
       fit: Fit.Contain,
       alignment: Alignment.Center,
     }),
   });
 
-  // Controla a animação Rive quando entra na viewport
+  const { rive: riveDashboard, RiveComponent: RiveComponentDashboard } = useRive({
+    src: '/dashboard_home.riv',
+    autoplay: true,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+  });
+
+  const { rive: riveWorkflows, RiveComponent: RiveComponentWorkflows } = useRive({
+    src: '/workflow.riv',
+    autoplay: true,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+  });
+
+  // Controla a animação Rive Pipeline quando entra na viewport
   useEffect(() => {
-    if (pipelineRef.isInView && rive && activeTab === 'pipeline') {
-      rive.play();
+    if (pipelineRef.isInView && rivePipeline && activeTab === 'pipeline') {
+      rivePipeline.play();
     }
-  }, [pipelineRef.isInView, rive, activeTab]);
+  }, [pipelineRef.isInView, rivePipeline, activeTab]);
+
+  // Controla a animação Rive Dashboard quando entra na viewport
+  useEffect(() => {
+    if (dashboardRef.isInView && riveDashboard && activeTab === 'dashboard') {
+      riveDashboard.play();
+    }
+  }, [dashboardRef.isInView, riveDashboard, activeTab]);
+
+  // Controla a animação Rive Workflows quando entra na viewport
+  useEffect(() => {
+    if (workflowsRef.isInView && riveWorkflows && activeTab === 'workflows') {
+      riveWorkflows.play();
+    }
+  }, [workflowsRef.isInView, riveWorkflows, activeTab]);
+
+  // Troca automática de tabs a cada 10 segundos
+  useEffect(() => {
+    const tabs: Tab[] = ['pipeline', 'dashboard', 'workflows'];
+    const interval = setInterval(() => {
+      setActiveTab((currentTab) => {
+        const currentIndex = tabs.indexOf(currentTab);
+        const nextIndex = (currentIndex + 1) % tabs.length;
+        return tabs[nextIndex];
+      });
+    }, 10000); // 10 segundos
+
+    return () => clearInterval(interval);
+  }, [activeTab]); // Reseta o intervalo quando activeTab muda
 
   const handleTabClick = (tab: Tab) => {
     setActiveTab(tab);
@@ -78,7 +126,7 @@ const System = () => {
         {activeTab === 'pipeline' && (
           <div ref={pipelineRef.ref} className='w-full flex py-8 lg:justify-center relative px-6'>
             <div className='w-full min-w-[700px] h-[450px] lg:w-[1200px] lg:h-[773px] shadow-lg rounded-[9px] overflow-hidden' style={{ aspectRatio: '16 / 9' }}>
-              <RiveComponent 
+              <RiveComponentPipeline 
                 style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
               />
             </div>
@@ -87,13 +135,25 @@ const System = () => {
           </div>
         )}
         {activeTab === 'dashboard' && (
-          <div className='h-[200px] w-[400px] bg-blue-500 mx-auto'>
-            {/* Conteúdo Dashboard */}
+          <div ref={dashboardRef.ref} className='w-full flex py-8 lg:justify-center relative px-6'>
+            <div className='w-full min-w-[700px] h-[450px] lg:w-[1200px] lg:h-[773px] shadow-lg rounded-[9px] overflow-hidden' style={{ aspectRatio: '16 / 9' }}>
+              <RiveComponentDashboard 
+                style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+              />
+            </div>
+            {/* Degradê branco na parte inferior */}
+            <div className='absolute bottom-0 left-0 right-0 h-[250px] bg-gradient-to-t from-white to-transparent pointer-events-none z-20' />
           </div>
         )}
         {activeTab === 'workflows' && (
-          <div className='h-[200px] w-[400px] bg-green-500 mx-auto'>
-            {/* Conteúdo Workflows */}
+          <div ref={workflowsRef.ref} className='w-full flex py-8 lg:justify-center relative px-6'>
+            <div className='w-full min-w-[700px] h-[450px] lg:w-[1200px] lg:h-[773px] shadow-lg rounded-[9px] overflow-hidden' style={{ aspectRatio: '16 / 9' }}>
+              <RiveComponentWorkflows 
+                style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+              />
+            </div>
+            {/* Degradê branco na parte inferior */}
+            <div className='absolute bottom-0 left-0 right-0 h-[250px] bg-gradient-to-t from-white to-transparent pointer-events-none z-20' />
           </div>
         )}
       </div>

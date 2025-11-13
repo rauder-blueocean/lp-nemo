@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import Button from './button';
 
 const Header = () => {
@@ -17,20 +16,20 @@ const Header = () => {
         
         {/* Menu de navegação desktop */}
         <nav className='hidden md:flex items-center gap-8 font-semibold animate-fade-in animate-delay-100'>
-          <Link to="/" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
+          <a href="#home" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Home
-          </Link>
+          </a>
           <a href="#servicos" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Serviços
           </a>
-          <a href="#suporte" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
+          <a href="#testimonials" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             Suporte
           </a>
-          <Link to="/faq" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
+          <a href="#faq" className='text-text-primary hover:bg-border-primary transition-colors py-1 px-3 rounded-lg'>
             FAQ
-          </Link>
+          </a>
         </nav>
-          <Button className='hidden md:block px-6 py-2 animate-fade-in animate-delay-200'>
+          <Button onClick={() => window.location.href = '#cta'} className='hidden md:block px-6 py-2 animate-fade-in animate-delay-200'>
             Entre em Contato
           </Button>
 
@@ -51,13 +50,13 @@ const Header = () => {
         }`}
       >
         <nav className='flex flex-col p-6 gap-4 border-t border-border-primary'>
-          <Link 
-            to="/" 
+          <a 
+            href="#home" 
             onClick={toggleMenu}
             className='text-text-primary hover:text-blue-primary transition-colors py-2 font-semibold'
           >
             Home
-          </Link>
+          </a>
           <a 
             href="#servicos" 
             onClick={toggleMenu}
@@ -72,13 +71,13 @@ const Header = () => {
           >
             Suporte
           </a>
-          <Link 
-            to="/faq" 
+          <a 
+            href="#faq" 
             onClick={toggleMenu}
             className='text-text-primary hover:text-blue-primary transition-colors py-2 font-semibold'
           >
             FAQ
-          </Link>
+          </a>
           <Button className='px-6 py-2'>
             Entre em Contato
           </Button>

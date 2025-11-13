@@ -35,7 +35,7 @@ const Testimonials = () => {
   ];
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-12 flex flex-col items-center justify-center'>
+    <div id='testimonials' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-12 flex flex-col items-center justify-center'>
       <div className='w-full flex flex-col lg:flex-row gap-24 justify-center'>
         <div className='flex flex-col gap-7 justify-center'>
         {/* Título e Descrição */}

@@ -39,6 +39,10 @@
 
 @layer utilities {
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* Animações */
     .animate-spin-slow {
       animation: spin 6s linear infinite;

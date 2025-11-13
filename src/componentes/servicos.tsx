@@ -59,7 +59,7 @@ const Servicos = () => {
   }, [card3Ref.isInView, rive3]);
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-6 py-8 flex flex-col items-center'>
+    <div id='servicos' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 py-8 flex flex-col items-center'>
       <div ref={titleRef.ref}>
         <h1 className={`text-2xl font-bold text-center text-text-primary lg:text-5xl leading-tight lg:leading-tight transition-all duration-800 ${titleRef.isInView ? 'animate-fade-in-up' : 'opacity-0'}`}>
           Tudo o que sua operação SaaS <br /> precisa. Em um só lugar.

@@ -53,7 +53,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-16 lg:py-24 flex flex-col items-center'>
+    <div id='faq' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-16 lg:py-24 flex flex-col items-center'>
       <div className='w-full max-w-[800px] flex flex-col gap-8'>
         {/* Título e Descrição */}
         <div className='flex flex-col gap-3 text-center'>

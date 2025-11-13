@@ -59,7 +59,7 @@ const CTA = () => {
   };
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white px-8  pb-24 pt-2  flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-8'>
+    <div id='cta' className='relative h-fit w-screen overflow-x-hidden bg-white px-8  pb-24 pt-2  flex flex-col lg:flex-row items-center justify-center gap-2 lg:gap-8'>
       <div className='flex flex-col gap-2  lg:w-[500px]'>
         <div ref={titleRef.ref}>
           <h1 className={`text-3xl font-bold text-center lg:text-left lg:text-4xl transition-all duration-800 ${titleRef.isInView ? 'animate-fade-in-up' : 'opacity-0 translate-y-8'}`}>

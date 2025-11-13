@@ -6,7 +6,6 @@ import Testimonials from './componentes/testimonials';
 import CTA from './componentes/cta';
 import Footer from './componentes/foorter';
 import Servicos from './componentes/servicos';
-import Animacao from './componentes/animacao';
 import FAQ from './componentes/faq';
 
 // Página inicial
@@ -25,25 +24,10 @@ function HomePage() {
   );
 }
 
-// Página FAQ
-function FAQPage() {
-  return (
-    <main className='relative min-h-screen w-screen overflow-x-hidden'>
-      <Header />
-      <div className='pt-20'>
-        <FAQ />
-      </div>
-      <Footer />
-    </main>
-  );
-}
-
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/animação" element={<Animacao />} />
-      <Route path="/faq" element={<FAQPage />} />
     </Routes>
   );
 }

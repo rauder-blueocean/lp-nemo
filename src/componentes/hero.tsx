@@ -60,7 +60,7 @@ const Hero = () => {
   };
 
   return (
-    <div className='relative h-fit w-screen overflow-x-hidden bg-white pt-24 pb-8 px-8 flex flex-col items-center lg:h-[470px] lg:justify-center'>
+    <div id='home' className='relative h-fit w-screen bg-white pt-24 pb-12 px-8 flex flex-col items-center lg:h-[580px] lg:justify-center'>
       <div className='flex flex-col items-center justify-center gap-2'>
       <div ref={badgeRef.ref} className={`p-[1px] flex w-fit h-fit rounded-full overflow-hidden relative transition-all duration-1000 ${badgeRef.isInView ? 'animate-fade-in' : 'opacity-0'}`}>
         <div className="h-[400px] w-[400px] absolute top-[-180px] left-[-100px] animate-spin-slow-reverse" style={{background: 'conic-gradient(from 0deg, #3B6BE8, rgba(59, 108, 232, 0))'}}></div>
@@ -74,10 +74,13 @@ const Hero = () => {
             O seu último <br /> e melhor CRM
           </h1>
         </div>
-        <div ref={descRef.ref}>
+        <div className='flex flex-col items-center justify-center' ref={descRef.ref}>
           <p className={`text-sm text-center leading-tight lg:text-lg transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-400' : 'opacity-0'}`}>
             Um CRM completo, desenvolvido para softwares, que <br /> centraliza comunicação, vendas, faturamento, dados <br /> e automação em um único sistema.
           </p>
+          <Button onClick={() => window.location.href = '#cta'} className={`mt-4 px-8 transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-600' : 'opacity-0'}`}>
+            Entre em Contato
+          </Button>
         </div>
       </div>
       </div>

@@ -10,7 +10,7 @@ const Footer = () => {
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className='hover:opacity-80 transition-opacity'>
                 <img src="/linkedin.svg" alt="LinkedIn" className='w-5 h-5'/>
             </a>
-            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" className='hover:opacity-80 transition-opacity'>
+            <a href="https://wa.me/5561996105123" target="_blank" rel="noopener noreferrer" className='hover:opacity-80 transition-opacity'>
                 <img src="/whatsapp.svg" alt="WhatsApp" className='w-5 h-5'/>
             </a>
             </div>
