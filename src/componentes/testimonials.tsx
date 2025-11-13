@@ -4,16 +4,14 @@ const Testimonials = () => {
   const titleRef = useInView({ threshold: 0.2 });
   const descRef = useInView({ threshold: 0.2 });
 
-  // Imagens do time - você precisará adicionar as imagens reais na pasta public
+  // Imagens do time
   const teamPhotos = [
-    '/team/person1.jpg',
-    '/team/person2.jpg',
-    '/team/person3.jpg',
-    '/team/person4.jpg',
-    '/team/person5.jpg',
-    '/team/person6.jpg',
-    '/team/person7.jpg',
-    '/team/person8.jpg',
+    '/foto1.png',
+    '/foto2.png',
+    '/foto3.png',
+    '/foto4.png',
+    '/foto5.png',
+    '/foto6.png',
   ];
 
   const testimonials = [

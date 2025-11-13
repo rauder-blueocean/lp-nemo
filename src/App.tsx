@@ -7,7 +7,8 @@ import CTA from './componentes/cta';
 import Footer from './componentes/foorter';
 import Servicos from './componentes/servicos';
 import FAQ from './componentes/faq';
-
+import CardLead from './componentes/cardlead';
+  
 // Página inicial
 function HomePage() {
   return (
@@ -17,6 +18,7 @@ function HomePage() {
       <System />
       <Servicos />
       <Testimonials />
+      <CardLead />
       <FAQ />
       <CTA />
       <Footer />
