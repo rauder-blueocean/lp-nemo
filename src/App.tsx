@@ -8,6 +8,7 @@ import Footer from './componentes/foorter';
 import Servicos from './componentes/servicos';
 import FAQ from './componentes/faq';
 import CardLead from './componentes/cardlead';
+import Logos from './componentes/logos';
   
 // Página inicial
 function HomePage() {
@@ -16,6 +17,7 @@ function HomePage() {
       <Header />
       <Hero />
       <System />
+      <Logos />
       <Servicos />
       <Testimonials />
       <CardLead />

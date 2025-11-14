@@ -11,29 +11,45 @@ const Testimonials = () => {
     '/foto3.png',
     '/foto4.png',
     '/foto5.png',
-    '/foto6.png',
+    '/foto7.png',
+    '/foto8.png'
   ];
 
   const testimonials = [
     {
-      name: 'Lucas Lins',
-      avatar: '/avatars/lucas.jpg',
-      message: 'Oi Gio, boa tarde!! Tudo certo sim, e por aí? Vocês são sensacionais, aí não precisamos de mais nada pois vocês já fazem as atualizações antes da gente pedir hehehe'
+      name: 'Mariana Duarte',
+      role: 'Head de Vendas SaaS',
+      avatar: 'https://randomuser.me/api/portraits/women/44.jpg',
+      message: 'A Nemo centralizou tudo: WhatsApp, leads e funil. Hoje respondo clientes 3x mais rápido e fecho muito mais oportunidades.'
     },
     {
-      name: 'Lucas',
-      avatar: '/avatars/lucas2.jpg',
-      message: 'Vocês têm superado nossas expectativas e você tem sido como uma amiga pra gente, de verdade. Muito obrigado pela excelência'
+      name: 'Renato Silveira',
+      role: 'Gerente de Suporte & CX',
+      avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      message: 'Automatizamos o WhatsApp e reduzimos em 40% o tempo de atendimento. A equipe finalmente consegue focar em vender.'
     },
     {
-      name: 'Lucas',
-      avatar: '/avatars/lucas2.jpg',
-      message: 'Vocês têm superado nossas expectativas e você tem sido como uma amiga pra gente, de verdade. Muito obrigado pela excelência'
+      name: 'Bianca Moretti',
+      role: 'Product Marketing Manager',
+      avatar: 'https://randomuser.me/api/portraits/women/68.jpg',
+      message: 'O que mais me impressionou foi a simplicidade. Em um dia já tínhamos fluxos rodando e o time inteiro usando sem dor de cabeça.'
+    },
+    {
+      name: 'Lucas Amaral',
+      role: 'SDR Leader',
+      avatar: 'https://randomuser.me/api/portraits/men/75.jpg',
+      message: 'O card do lead é perfeito. Todas as informações na mão e sem precisar sair do sistema para responder no WhatsApp.'
+    },
+    {
+      name: 'Carla Menezes',
+      role: 'COO de Startup B2B',
+      avatar: 'https://randomuser.me/api/portraits/women/65.jpg',
+      message: '“Depois que migramos para a Nemo, nossa operação ficou previsível. Funis claros, automações inteligentes e suporte que realmente ajuda.”'
     }
   ];
 
   return (
-    <div id='testimonials' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-12 flex flex-col items-center justify-center'>
+    <div id='testimonials' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 lg:px-[74px] py-24 flex flex-col items-center justify-center'>
       <div className='w-full flex flex-col lg:flex-row gap-24 justify-center'>
         <div className='flex flex-col gap-7 justify-center'>
         {/* Título e Descrição */}
@@ -121,7 +137,7 @@ const Testimonials = () => {
         </div>
 
         {/* Carrossel de Depoimentos */}
-        <div className='relative h-[400px] w-[375px] mx-auto overflow-hidden lg:mx-0'>
+        <div className='relative h-[400px] w-full mx-auto overflow-hidden lg:mx-0 lg:w-[375px]'>
           {/* Gradient no topo */}
           <div className='absolute top-0 left-0 right-0 h-[102px] bg-gradient-to-b from-white to-transparent pointer-events-none z-10' />
           
@@ -147,7 +163,10 @@ const Testimonials = () => {
                   <p className='text-sm font-extrabold text-text-primary leading-tight'>
                     {testimonial.name}
                   </p>
-                  <p className='text-sm font-medium text-text-secondary '>
+                  <p className='text-xs font-medium text-text-secondary leading-tight'>
+                    {testimonial.role}
+                  </p>
+                  <p className='text-sm font-medium text-text-secondary mt-1'>
                     {testimonial.message}
                   </p>
                 </div>
@@ -174,7 +193,10 @@ const Testimonials = () => {
                   <p className='text-sm font-extrabold text-text-primary leading-tight'>
                     {testimonial.name}
                   </p>
-                  <p className='text-sm font-medium text-text-secondary '>
+                  <p className='text-xs font-medium text-text-secondary leading-tight'>
+                    {testimonial.role}
+                  </p>
+                  <p className='text-sm font-medium text-text-secondary mt-1'>
                     {testimonial.message}
                   </p>
                 </div>
