@@ -78,7 +78,7 @@ const Hero = () => {
           <p className={`text-sm text-center leading-tight lg:text-lg transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-400' : 'opacity-0'}`}>
             Um CRM completo, desenvolvido para softwares, que <br /> centraliza comunicação, vendas, faturamento, dados <br /> e automação em um único sistema.
           </p>
-          <Button onClick={() => window.location.href = '#cta'} className={`mt-4 px-8 transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-600' : 'opacity-0'}`}>
+          <Button onClick={() => window.location.href = '#cta'} className={`mt-4 px-8 hidden lg:block transition-all duration-1000 ${descRef.isInView ? 'animate-fade-in animate-delay-600' : 'opacity-0'}`}>
             Entre em Contato
           </Button>
         </div>

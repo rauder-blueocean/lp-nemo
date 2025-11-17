@@ -72,7 +72,7 @@ const CTA = () => {
           </p>
         </div>
       </div>
-      <button className='bg-blue-primary mt-4 text-white h-[45px] px-8 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed block lg:hidden'>
+      <button onClick={() => window.location.href = '#home'} className='bg-blue-primary mt-4 text-white h-[45px] px-8 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed block lg:hidden'>
         Agendar demonstração grátis
       </button>
         
