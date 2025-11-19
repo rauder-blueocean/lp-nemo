@@ -6,6 +6,8 @@ const Servicos = () => {
   const card1Ref = useInView({ threshold: 0.2 });
   const card2Ref = useInView({ threshold: 0.2 });
   const card3Ref = useInView({ threshold: 0.2 });
+  const card4Ref = useInView({ threshold: 0.2 });
+  const card5Ref = useInView({ threshold: 0.2 });
 
   const { rive: rive1, RiveComponent: RiveComponent1 } = useRive({
     src: '/criacao_de_lead_final.riv',
@@ -27,6 +29,24 @@ const Servicos = () => {
 
   const { rive: rive3, RiveComponent: RiveComponent3 } = useRive({
     src: '/graficos.riv',
+    autoplay: false,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+  });
+
+  const { rive: rive4, RiveComponent: RiveComponent4 } = useRive({
+    src: '/menssagens.riv',
+    autoplay: false,
+    layout: new Layout({
+      fit: Fit.Contain,
+      alignment: Alignment.Center,
+    }),
+  });
+
+  const { rive: rive5, RiveComponent: RiveComponent5 } = useRive({
+    src: '/relogio.riv',
     autoplay: false,
     layout: new Layout({
       fit: Fit.Contain,
@@ -58,6 +78,20 @@ const Servicos = () => {
     }
   }, [card3Ref.isInView, rive3]);
 
+  // Controla a animação Rive 4 quando entra na viewport
+  useEffect(() => {
+    if (card4Ref.isInView && rive4) {
+      rive4.play();
+    }
+  }, [card4Ref.isInView, rive4]);
+
+  // Controla a animação Rive 5 quando entra na viewport
+  useEffect(() => {
+    if (card5Ref.isInView && rive5) {
+      rive5.play();
+    }
+  }, [card5Ref.isInView, rive5]);
+
   return (
     <div id='servicos' className='relative h-fit w-screen overflow-x-hidden bg-white px-6 py-8 flex flex-col items-center'>
       <div ref={titleRef.ref}>
@@ -70,7 +104,7 @@ const Servicos = () => {
           A Nemo é composta por cinco módulos integrados que tornam sua operação mais eficiente, previsível <br /> e escalável. (fazer igual site da attio, mostrando dashboards de cada etapa)
         </p>
       </div>
-      <div className='flex flex-col gap-4 w-full md:w-fit md:flex-row mt-8'>
+      <div className='flex flex-col gap-4 w-full mt-8 md:flex-row md:flex-wrap md:justify-center lg:w-[1200px]'>
         <div ref={card1Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
           <RiveComponent1 
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
@@ -83,6 +117,16 @@ const Servicos = () => {
         </div>
         <div ref={card3Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
           <RiveComponent3 
+            style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+          />
+        </div>
+        <div ref={card4Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
+          <RiveComponent4 
+            style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
+          />
+        </div>
+        <div ref={card5Ref.ref} className='shadow-lg rounded-[9px] w-full md:w-[327px] overflow-hidden' style={{ aspectRatio: '327 / 251' }}>
+          <RiveComponent5 
             style={{ width: '100%', height: '100%', backgroundColor: 'transparent' }}
           />
         </div>
