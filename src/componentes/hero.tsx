@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Button from './button';
 import { useInView } from '../hooks/useInView';
+import { sendToWebhook } from '../utils/webhook';
 
 interface FormData {
   nome: string;
@@ -17,6 +18,7 @@ const Hero = () => {
     telefone: '',
     nomeEmpresa: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const badgeRef = useInView({ threshold: 0.1 });
   const titleRef = useInView({ threshold: 0.1 });
@@ -30,7 +32,7 @@ const Hero = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
     // Validação básica
@@ -46,17 +48,29 @@ const Hero = () => {
       return;
     }
 
-    // Exibir dados em JSON
-    console.log('Dados do formulário:', JSON.stringify(formData, null, 2));
-    alert('Formulário enviado com sucesso! Confira o console para ver os dados em JSON.');
-    
-    // Limpar formulário
-    setFormData({
-      nome: '',
-      email: '',
-      telefone: '',
-      nomeEmpresa: ''
-    });
+    setIsSubmitting(true);
+
+    try {
+      const result = await sendToWebhook(formData);
+      
+      if (result.success) {
+        alert(result.message);
+        // Limpar formulário
+        setFormData({
+          nome: '',
+          email: '',
+          telefone: '',
+          nomeEmpresa: ''
+        });
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      alert('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -119,8 +133,8 @@ const Hero = () => {
           placeholder='Nome da sua Empresa' 
           className='border border-border-primary rounded-md h-[45px] px-4 text-sm font-semibold text-text-secondary placeholder:text-text-secondary focus:outline-none focus:border-blue-primary transition-colors'
         />
-        <Button type='submit'>
-          Entre em Contato
+        <Button type='submit' disabled={isSubmitting}>
+          {isSubmitting ? 'Enviando...' : 'Entre em Contato'}
         </Button>
       </form>
     </div>

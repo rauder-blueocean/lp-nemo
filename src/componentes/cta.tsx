@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Button from './button';
 import { useInView } from '../hooks/useInView';
+import { sendToWebhook } from '../utils/webhook';
 
 interface FormData {
   nome: string;
@@ -17,6 +18,7 @@ const CTA = () => {
     telefone: '',
     nomeEmpresa: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const titleRef = useInView({ threshold: 0.2 });
   const descRef = useInView({ threshold: 0.2 });
@@ -29,7 +31,7 @@ const CTA = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     
     // Validação básica
@@ -45,17 +47,29 @@ const CTA = () => {
       return;
     }
 
-    // Exibir dados em JSON
-    console.log('Dados do formulário:', JSON.stringify(formData, null, 2));
-    alert('Formulário enviado com sucesso! Confira o console para ver os dados em JSON.');
-    
-    // Limpar formulário
-    setFormData({
-      nome: '',
-      email: '',
-      telefone: '',
-      nomeEmpresa: ''
-    });
+    setIsSubmitting(true);
+
+    try {
+      const result = await sendToWebhook(formData);
+      
+      if (result.success) {
+        alert(result.message);
+        // Limpar formulário
+        setFormData({
+          nome: '',
+          email: '',
+          telefone: '',
+          nomeEmpresa: ''
+        });
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error('Erro ao enviar formulário:', error);
+      alert('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -110,8 +124,8 @@ const CTA = () => {
             placeholder='Nome da sua Empresa' 
             className='border border-border-primary rounded-md h-[45px] px-4 text-sm font-semibold text-text-secondary placeholder:text-text-secondary focus:outline-none focus:border-blue-primary transition-colors'
           />
-          <Button type='submit'>
-            Agendar demonstração grátis
+          <Button type='submit' disabled={isSubmitting}>
+            {isSubmitting ? 'Enviando...' : 'Agendar demonstração grátis'}
           </Button>
         </form>
     </div>
