@@ -2,7 +2,6 @@ import { useState } from 'react';
 import type { FormEvent } from 'react';
 import Button from './button';
 import { useInView } from '../hooks/useInView';
-import { sendToWebhook } from '../utils/webhook';
 
 interface FormData {
   nome: string;
@@ -49,27 +48,18 @@ const CTA = () => {
 
     setIsSubmitting(true);
 
-    try {
-      const result = await sendToWebhook(formData);
-      
-      if (result.success) {
-        alert(result.message);
-        // Limpar formulário
-        setFormData({
-          nome: '',
-          email: '',
-          telefone: '',
-          nomeEmpresa: ''
-        });
-      } else {
-        alert(result.message);
-      }
-    } catch (error) {
-      console.error('Erro ao enviar formulário:', error);
-      alert('Erro ao enviar formulário. Por favor, tente novamente mais tarde.');
-    } finally {
+    // Simula envio (removido webhook)
+    setTimeout(() => {
+      alert('Formulário enviado com sucesso! Entraremos em contato em breve.');
+      // Limpar formulário
+      setFormData({
+        nome: '',
+        email: '',
+        telefone: '',
+        nomeEmpresa: ''
+      });
       setIsSubmitting(false);
-    }
+    }, 500);
   };
 
   return (
