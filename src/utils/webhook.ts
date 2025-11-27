@@ -5,7 +5,7 @@ interface FormData {
   nomeEmpresa: string;
 }
 
-const WEBHOOK_URL = 'https://n8n.blueoceansem.com/webhook-test/lpnemocrm2';
+const WEBHOOK_URL = 'https://webhook.blueoceansem.com/webhook/lpnemocrm2';
 
 export const sendToWebhook = async (data: FormData): Promise<{ success: boolean; message: string }> => {
   // Prepara os dados no formato que o n8n espera
