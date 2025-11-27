@@ -77,51 +77,58 @@ export const sendToWebhook = async (data: FormData, useProductionWebhook: boolea
     origem: 'site-nemo'
   };
 
-  const isDevelopment = import.meta.env.DEV || window.location.hostname === 'localhost';
+  // Detecta ambiente de forma mais robusta
+  const isDevelopment = import.meta.env.DEV || 
+                        window.location.hostname === 'localhost' || 
+                        window.location.hostname === '127.0.0.1' ||
+                        window.location.hostname.includes('localhost');
+  
+  const isProduction = !isDevelopment && window.location.hostname.includes('nemocrm.com');
+  
   const webhookUrl = getWebhookUrl(useProductionWebhook);
   
   console.log('Enviando dados para webhook:', webhookUrl);
   console.log('Dados enviados:', data);
+  console.log('Hostname:', window.location.hostname);
+  console.log('Ambiente DEV:', import.meta.env.DEV);
   console.log('Ambiente:', isDevelopment ? 'desenvolvimento' : 'produção');
   console.log('Webhook:', useProductionWebhook ? 'PRODUÇÃO' : 'TESTE');
 
   try {
-    // Em desenvolvimento, usa proxy (sem problemas de CORS)
-    if (isDevelopment) {
-      const response = await fetch(webhookUrl, {
+    // SEMPRE usa no-cors quando NÃO for desenvolvimento local
+    // Isso garante que os dados sejam enviados sem bloqueio de CORS
+    if (!isDevelopment) {
+      console.log('PRODUÇÃO: Usando no-cors para evitar bloqueio de CORS');
+      await fetch(webhookUrl, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
+        // SEM headers customizados - isso evita preflight completamente
         body: JSON.stringify(payload),
-        mode: 'cors',
+        mode: 'no-cors', // Não permite ler resposta, mas envia os dados sem preflight
       });
 
-      return await handleResponse(response);
+      // Com no-cors, não podemos ler a resposta, então assumimos sucesso
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      console.log('Dados enviados com sucesso (modo no-cors)');
+      return {
+        success: true,
+        message: 'Formulário enviado com sucesso! Entraremos em contato em breve.'
+      };
     }
 
-    // Em produção, usa no-cors diretamente para evitar bloqueio de CORS
-    // Isso envia os dados mesmo sem poder ler a resposta
-    console.log('Usando no-cors em produção para evitar bloqueio de CORS');
-    await fetch(webhookUrl, {
+    // Em desenvolvimento, usa proxy (sem problemas de CORS)
+    console.log('DESENVOLVIMENTO: Usando proxy');
+    const response = await fetch(webhookUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify(payload),
-      mode: 'no-cors', // Não permite ler resposta, mas envia os dados
+      mode: 'cors',
     });
 
-    // Com no-cors, não podemos ler a resposta, então assumimos sucesso
-    // após um pequeno delay para dar tempo do servidor processar
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    console.log('Dados enviados com sucesso (modo no-cors)');
-    return {
-      success: true,
-      message: 'Formulário enviado com sucesso! Entraremos em contato em breve.'
-    };
+    return await handleResponse(response);
   } catch (error) {
     console.error('Erro detalhado ao enviar para webhook:', error);
     
